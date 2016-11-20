@@ -10,22 +10,15 @@ import android.widget.ListView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
-import javax.net.ssl.HttpsURLConnection;
-
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 public class Itinerary extends AppCompatActivity {
-    // KEY: AIzaSyAx3Pj6JFDGef_UyhbiONNnAzCEtxlAuSQ
+    // KEY: AIzaSyDKl5Kpec3loPgTSW9hpU6R5in2ojl3RB8
 
     ArrayList<String> rawUserLocations;
     //        Bukit Timah Nature Reserve
-    String origin = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=Vancouver+BC|Seattle&destinations=San+Francisco|Victoria+BC&mode=bicycling&key=AIzaSyAx3Pj6JFDGef_UyhbiONNnAzCEtxlAuSQ";
+    String origin = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=Vancouver+BC|Seattle&destinations=San+Francisco|Victoria+BC&mode=bicycling&key=AIzaSyDKl5Kpec3loPgTSW9hpU6R5in2ojl3RB8";
     ASyncHttps request = new ASyncHttps();
 
 
