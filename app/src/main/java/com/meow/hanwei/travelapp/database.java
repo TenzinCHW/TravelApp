@@ -31,8 +31,8 @@ public class database {
             "Sri Krishnan Temple",
             "Sri Srinivasa Perumal Temple",
             "Sri Thandayuthapani Temple",
-            "Sultan Mosque"
-//            "Thian Hock Keng Temple"
+            "Sultan Mosque",
+            "Thian Hock Keng Temple"
     };
 
     private String[] museums = {

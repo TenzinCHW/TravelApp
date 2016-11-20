@@ -9,14 +9,13 @@ import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText hotel = (EditText) findViewById(R.id.hotel);
-    EditText budget = (EditText) findViewById(R.id.budget);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final EditText hotel = (EditText) findViewById(R.id.hotel);
+        final EditText budget = (EditText) findViewById(R.id.budget);
         Button start = (Button) findViewById(R.id.start);
         start.setOnClickListener(new View.OnClickListener() {
             @Override
