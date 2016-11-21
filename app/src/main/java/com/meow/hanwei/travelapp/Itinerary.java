@@ -90,8 +90,13 @@ public class Itinerary extends AppCompatActivity {
             }
         });
 
+<<<<<<< HEAD
         //Temporary sample used, format of <STARTING HOTEL>, ARRAYLIST OF ITENARY
        generateDistanceMap("Sentosa Singapore", data.getParks());
+=======
+       generateDistanceMap("Sentosa Singapore", data.getReligious());
+        //getJSONString("Fullerton Hotel", data.getParks());
+>>>>>>> ae8bab983cfffba61a09e3070187f7a2db7895d0
     }
 
 
@@ -102,7 +107,7 @@ public class Itinerary extends AppCompatActivity {
         for (int i = 0; i < placesToVisit.size(); i++){
             orderOfLocation.add(placesToVisit.get(i));
         }
-
+        
         for (int i = 0; i < placesToVisit.size()+1 ;i++ ){
             getJSONString(orderOfLocation.get(i),orderOfLocation); //response contains the distance from origin to places
         }
@@ -138,6 +143,7 @@ public class Itinerary extends AppCompatActivity {
         private ArrayList<Integer> getDistFromJSON(String time2parse) throws ArrayStoreException {
             System.out.println(time2parse);         //output string from the api call. For debugging purposes
             ArrayList<Integer> result = new ArrayList<>();
+            System.out.println(time2parse);
             if (time2parse.equals("FAILED")) {
                 throw new ArrayStoreException("NOTHING FOUND GG");
             } else {
