@@ -36,10 +36,10 @@ public class database {
     };
 
     private String[] museums = {
-            "ArtScience Museum",
-            "Asian Civilisations Museum",
-            "Chinatown Heritage Centre",
-            "Malay Heritage Centre",
+            "ArtScience Museum Singapore",
+            "Asian Civilisations Museum Singapore",
+            "Chinatown Heritage Centre Singapore",
+            "Malay Heritage Centre Singapore",
             "National Museum of Singapore",
             "Peranakan Museum",
             "Red Dot Design Museum",
@@ -50,26 +50,26 @@ public class database {
     };
 
     private String[] entertainment = {
-            "Esplanade Theatres on the Bay",
-            "Geylang Serai Market Singapore",
-            "G Max Reverse Bungy Singpore",
-            "Marina Bay Sands Casino Singapore",
-            "Resort World Sentosa Casino Singapore",
-            "Sentosa Skyline Luge and Skyride",
-            "Singapore Bazaar and Flea Market",
+//            "Esplanade - Theatres on the Bay Singapore",
+//            "Geylang Serai Market Singapore",
+//            "G-Max Reverse Bungy",
+//            "Marina Bay Sands Singapore",
+//            "Resort World Casino",
+//            "Skyline Luge Sentosa",
+//            "Sentosa Boardwalk Bazaar",
             "Singapore Discovery Centre",
-            "Singapore F1 Grand Prix",
+//            "Singapore Grand Prix",
             "Singapore Flyer",
             "Science Centre Singapore",
             "Singapore Night Safari",
-            "Singapore Zoo",
-            "Underwater World",
-            "Universal Studios Singapore"
+//            "Singapore Zoo Singapore",
+//            "Underwater World Singapore Pte Ltd",
+//            "Universal Studios Singapore Singapore"
     };
 
     private String[] food = {
-            "Lau Pa Sat(Telok Ayer Market)",
-            "Maxwell Road Hawker Centre"
+            "Lau Pa Sat Festive Market"
+//            "Maxwell Road Hawker Centre"
     };
 
     private String[] parkInfo = {
@@ -102,7 +102,7 @@ public class database {
     };
 
     private String[] museumInfo = {
-            "ArtScience Museum is a museum located within the integrated resort of Marina Bay Sands in the Downtown Core of the Central Area in Singapore.",
+//            "ArtScience Museum is a museum located within the integrated resort of Marina Bay Sands in the Downtown Core of the Central Area in Singapore.",
             "The Asian Civilisations Museum is an institution which forms a part of the four museums in Singapore, the other three being the Peranakan Museum at Old Tao Nan School, the National Museum of Singapore and the Singapore Art Museum.",
             "The Chinatown Heritage Centre is the gateway for all visitors to trace the footsteps of Singapore's early pioneers and discover the personal stories of people who made Chinatown their home.",
             "The Malay Heritage Centre is a cultural centre and museum in Singapore that showcases the culture, heritage and history of Malay Singaporeans. Located at Sultan Gate in Kampong Glam, the 8,000 square metres centre was launched on 27 November 2004.",
@@ -116,26 +116,26 @@ public class database {
     };
 
     private String[] entertainmentInfo = {
-            "Esplanade – Theatres on the Bay, also known as the Esplanade Theatre or simply The Esplanade, is a 60,000 square metres performing arts centre located in Marina Bay near the mouth of the Singapore River.",
-            "Geylang Serai Market is one of the biggest and busiest wet markets in Singapore. Since 1964, this market has been a focal point for the local Malay community.",
-            "Singapore’s first and only reverse bungy, G-MAX has attracted hundreds of people to watch and ride on it every night. Designed and developed in New Zealand, it has been recognised as a “must-see and must-do” for braver souls in Singapore",
-            "Marina Bay Sands is Asia’s most spectacular entertainment destination, located at the heart of Singapore’s CBD, with over 2,500 hotel rooms & suites, casino, restaurants, entertainment, meeting & exhibition facilities, theaters, luxurious shopping and the one & only Sands SkyPark, new experiences await you at every turn.",
-            "Owned and operated by Asia's largest gaming operator, Resorts World Sentosa is unrivalled in its intimate knowledge of Asian gaming preferences. The place brims with activity 24/7 and is complemented by unparalleled customer privileges.",
-            "Skyline Luge Sentosa is a luge located in Sentosa, Singapore. The attraction opened in the second half of 2005. The luge, situated on the Imbiah Lookout cluster opposite the Tiger Sky Tower, has two tracks.",
-            "These folks have a weekly bazaar at Sentosa boardwalk and regularly hold bazaars at other spots around Singapore like the Marina Waterfront, Clarke Quay and One KM mall in Katong.",
+//            "Esplanade – Theatres on the Bay, also known as the Esplanade Theatre or simply The Esplanade, is a 60,000 square metres performing arts centre located in Marina Bay near the mouth of the Singapore River.",
+//            "Geylang Serai Market is one of the biggest and busiest wet markets in Singapore. Since 1964, this market has been a focal point for the local Malay community.",
+//            "Singapore’s first and only reverse bungy, G-MAX has attracted hundreds of people to watch and ride on it every night. Designed and developed in New Zealand, it has been recognised as a “must-see and must-do” for braver souls in Singapore",
+//            "Marina Bay Sands is Asia’s most spectacular entertainment destination, located at the heart of Singapore’s CBD, with over 2,500 hotel rooms & suites, casino, restaurants, entertainment, meeting & exhibition facilities, theaters, luxurious shopping and the one & only Sands SkyPark, new experiences await you at every turn.",
+//            "Owned and operated by Asia's largest gaming operator, Resorts World Sentosa is unrivalled in its intimate knowledge of Asian gaming preferences. The place brims with activity 24/7 and is complemented by unparalleled customer privileges.",
+//            "Skyline Luge Sentosa is a luge located in Sentosa, Singapore. The attraction opened in the second half of 2005. The luge, situated on the Imbiah Lookout cluster opposite the Tiger Sky Tower, has two tracks.",
+//            "These folks have a weekly bazaar at Sentosa boardwalk and regularly hold bazaars at other spots around Singapore like the Marina Waterfront, Clarke Quay and One KM mall in Katong.",
             "The Singapore Discovery Centre is a 'edutainment' and tourist attraction located in Jurong West, Singapore. The centre includes exhibits which displays the history of Singapore as well as an insight on the future",
-            "Enjoy the Formula 1 racing experience at the 2016 Formula 1 Singapore Airlines Singapore Grand Prix. See Formula One drivers & F1 racing teams in action at the Singapore GP",
+//            "Enjoy the Formula 1 racing experience at the 2016 Formula 1 Singapore Airlines Singapore Grand Prix. See Formula One drivers & F1 racing teams in action at the Singapore GP",
             "Experience breathtaking, panoramic views on Asia’s largest observation wheel. For locals and tourists alike, there is only one place in Singapore that offers a bird’s eye view of the entire island city – Singapore Flyer.",
-            " Singapore Science Centre is a scientific institution in Jurong East, Singapore, specialising in the promotion of scientific and technological education for the general public.",
-            "The Night Safari is the world's first nocturnal zoo and is one of the most popular tourist attractions in Singapore.",
-            "Singapore’s zoo is a beautiful, award-winning wildlife park, where animals can roam freely in their natural habitats. Drop in on some of our top nature and wildlife attractions – you might even make new friends!",
-            "Underwater World, also known as Underwater World Singapore Pte Ltd, was an oceanarium located on the offshore Singaporean island of Sentosa. Opened in 1991, it had more than 2,500 marine animals of 250 species from different regions of the world.",
-            "Singapore’s only movie-theme park features 24 rides and attractions, including a pair of dueling coasters that brush past one another in several near misses in their aerial combat."
+            "Singapore Science Centre is a scientific institution in Jurong East, Singapore, specialising in the promotion of scientific and technological education for the general public.",
+            "The Night Safari is the world's first nocturnal zoo and is one of the most popular tourist attractions in Singapore."
+//            "Singapore’s zoo is a beautiful, award-winning wildlife park, where animals can roam freely in their natural habitats. Drop in on some of our top nature and wildlife attractions – you might even make new friends!",
+//            "Underwater World, also known as Underwater World Singapore Pte Ltd, was an oceanarium located on the offshore Singaporean island of Sentosa. Opened in 1991, it had more than 2,500 marine animals of 250 species from different regions of the world.",
+//            "Singapore’s only movie-theme park features 24 rides and attractions, including a pair of dueling coasters that brush past one another in several near misses in their aerial combat."
     };
 
     private String[] foodInfo = {
-            "Lau Pa Sat is a historic building located within the Downtown Core in the financial district of Singapore. A quaint building with ornate cast iron pillars that hold up a terracotta roof. On the roof is a distinctive clock tower. It is currently a bustling food center which offers a variety of Asian cuisine and at reasonable prices",
-            "Maxwell Road Hawker Centre's reputation as a place for delicious foods is spread all over Singapore. This food court has been featured on many television channels for offering excellent authentic local food at reasonable prices."
+            "Lau Pa Sat is a historic building located within the Downtown Core in the financial district of Singapore. A quaint building with ornate cast iron pillars that hold up a terracotta roof. On the roof is a distinctive clock tower. It is currently a bustling food center which offers a variety of Asian cuisine and at reasonable prices"
+//            "Maxwell Road Hawker Centre's reputation as a place for delicious foods is spread all over Singapore. This food court has been featured on many television channels for offering excellent authentic local food at reasonable prices."
     };
 
     ArrayList<String> temp = new ArrayList<>();

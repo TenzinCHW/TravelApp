@@ -65,16 +65,8 @@ public class Itinerary extends AppCompatActivity {
             }
         });
 
-<<<<<<< HEAD
-        // TODO: make https request ASYNCHRONOUSLY
-        // TODO: convert to JSON
-        // TODO: read the distance data
-
-       generateDistanceMap("Sentosa Singapore", data.getParks());
+       generateDistanceMap("Sentosa Singapore", data.getMuseums());
         //getJSONString("Fullerton Hotel", data.getParks());
-=======
-       generateDistanceMap("Sentosa Singapore", data.getReligious());
->>>>>>> 147fb1d8bff6c4b07babb1dd7ebae5a41843a05f
     }
 
 
@@ -120,6 +112,7 @@ public class Itinerary extends AppCompatActivity {
 
         private ArrayList<Integer> getDistFromJSON(String time2parse) throws ArrayStoreException {
             ArrayList<Integer> result = new ArrayList<>();
+            System.out.println(time2parse);
             if (time2parse.equals("FAILED")) {
                 throw new ArrayStoreException("NOTHING FOUND GG");
             } else {
