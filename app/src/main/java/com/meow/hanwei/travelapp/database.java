@@ -9,11 +9,11 @@ public class database {
     private String[] parks = {
             "Bukit Timah Nature Reserve",
             "Chinese and Japanese Gardens",
-            "East Coast Park",
+            "East Coast Park Singapore",
             "Fort Canning Park",
             "Gardens by the Bay",
             "Jurong Bird Park",
-            "Marina Barrage",
+            "Marina Barrage Singapore",
             "National Orchid Garden",
             "Singapore Botanic Gardens",
             "Sungei Buloh Nature Park",

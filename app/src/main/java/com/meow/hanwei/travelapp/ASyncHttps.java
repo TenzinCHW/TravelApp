@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -23,13 +24,11 @@ public class ASyncHttps extends AsyncTask<String, Void, String> {
     public static final int READ_TIMEOUT = 15000;
     public static final int CONNECTION_TIMEOUT = 15000;
     private String KEY = "AIzaSyDKl5Kpec3loPgTSW9hpU6R5in2ojl3RB8";
-    private String JSONStr;
-    public ArrayList<Integer> dist;
 
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        getDistFromJSON(JSONStr);
+        //getDistFromJSON();
     }
 
     @Override
@@ -37,6 +36,9 @@ public class ASyncHttps extends AsyncTask<String, Void, String> {
         String stringUrl = strings[0];
         String inputLine;
         String result;
+
+
+
         try{
             //Create a URL object holding our url
             URL myUrl = new URL(stringUrl);
@@ -72,50 +74,4 @@ public class ASyncHttps extends AsyncTask<String, Void, String> {
         return result;
     }
 
-    public void getJSONString(String fromPlace, ArrayList<String> toPlaces) {
-        String request = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + fromPlace.replace(" ", "+") + "&destinations=";
-        int count = 0;
-        while (count < toPlaces.size()) {
-            request += toPlaces.get(count).replace(" ", "+");
-            if (count < toPlaces.size() - 1) {
-                request += "|";
-            }
-        }
-        request += "&mode=walking&key=" + KEY;
-        ASyncHttps getStuff = new ASyncHttps();
-        String result;
-        try {
-            result = getStuff.execute(request).get();
-            JSONStr = result;
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void getDistFromJSON(String time2parse) throws ArrayStoreException {
-        ArrayList<Integer> result = new ArrayList<>();
-        if (time2parse.equals("FAILED")) {
-            throw new ArrayStoreException("NOTHING FOUND GG");
-        } else {
-            try {
-                JSONObject originalData = new JSONObject(time2parse);
-                JSONArray rowsData = (JSONArray) originalData.get("rows");
-                JSONArray elementData;
-                JSONObject distData;
-                Integer dist;
-
-                for (int i = 0; i < rowsData.length(); i++) {
-                    elementData = (JSONArray) rowsData.get(i);
-                    distData = (JSONObject) elementData.get(1);
-                    dist = distData.getInt("value");
-                    result.add(dist);
-                }
-            } catch (JSONException j) {
-                j.printStackTrace();
-            }
-        }
-        dist = result;
-    }
 }
