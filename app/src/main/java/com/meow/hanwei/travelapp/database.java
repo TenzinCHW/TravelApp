@@ -36,17 +36,17 @@ public class database {
     };
 
     private String[] museums = {
-            "ArtScience Museum Singapore",
-            "Asian Civilisations Museum Singapore",
-            "Chinatown Heritage Centre Singapore",
-            "Malay Heritage Centre Singapore",
-            "National Museum of Singapore",
+//            "ArtScience Museum Singapore (Future world @ArtScience Museum)",
+//            "Asian Civilisations Museum Singapore",
+//            "Chinatown Heritage Centre Singapore",
+//            "Malay Heritage Centre Singapore",
+//            "National Museum Singapore",
             "Peranakan Museum",
-            "Red Dot Design Museum",
-            "Singapore Art Museum",
-            "Singapore Mint Coin Gallery",
-            "Singapore Navy Museum",
-            "Singapore Philatelic Museum"
+//            "Red Dot Design Museum Singapore",
+//            "Singapore Art Museum Singapore",
+//            "Singapore Coins and Notes Museum",
+            "Singapore Navy Museum"
+//            "Singapore Philatelic Museum Singapore"
     };
 
     private String[] entertainment = {
@@ -103,16 +103,16 @@ public class database {
 
     private String[] museumInfo = {
 //            "ArtScience Museum is a museum located within the integrated resort of Marina Bay Sands in the Downtown Core of the Central Area in Singapore.",
-            "The Asian Civilisations Museum is an institution which forms a part of the four museums in Singapore, the other three being the Peranakan Museum at Old Tao Nan School, the National Museum of Singapore and the Singapore Art Museum.",
-            "The Chinatown Heritage Centre is the gateway for all visitors to trace the footsteps of Singapore's early pioneers and discover the personal stories of people who made Chinatown their home.",
-            "The Malay Heritage Centre is a cultural centre and museum in Singapore that showcases the culture, heritage and history of Malay Singaporeans. Located at Sultan Gate in Kampong Glam, the 8,000 square metres centre was launched on 27 November 2004.",
-            "The National Museum of Singapore is the oldest museum in Singapore. Its history dates back to 1849, when it was started as a section of a library at Singapore Institution and called the Raffles Library and Museum.",
+//            "The Asian Civilisations Museum is an institution which forms a part of the four museums in Singapore, the other three being the Peranakan Museum at Old Tao Nan School, the National Museum of Singapore and the Singapore Art Museum.",
+//            "The Chinatown Heritage Centre is the gateway for all visitors to trace the footsteps of Singapore's early pioneers and discover the personal stories of people who made Chinatown their home.",
+//            "The Malay Heritage Centre is a cultural centre and museum in Singapore that showcases the culture, heritage and history of Malay Singaporeans. Located at Sultan Gate in Kampong Glam, the 8,000 square metres centre was launched on 27 November 2004.",
+//            "The National Museum of Singapore is the oldest museum in Singapore. Its history dates back to 1849, when it was started as a section of a library at Singapore Institution and called the Raffles Library and Museum.",
             "The Peranakan Museum is a museum in Singapore specialising in Peranakan culture. A sister museum to the Asian Civilisations Museum, it is the first of its kind in the world, that explores Peranakan cultures in Singapore and other former Straits Settlements in Malacca and Penang.",
-            "A unique Singapore attraction, the Red Dot Design Museum presents the latest trends in the international design scene with a collection of more than 1,000 exhibits in the field of product design and communication design from over 50 countries.",
-            "The National Gallery Singapore is an art gallery located in the Downtown Core of Singapore. Opened on 24 November 2015, it oversees the world’s largest public collection of Singapore and Southeast Asian art, consisting of over 8,000 artworks.",
-            "Official mint for Singapore. The Mint has, since its establishment, undertaken most of the minting of Singapore's circulation coins.",
-            "Take a trip down memory lane, as you view the guns and other components taken from our early warships. Find out more about what makes the Republic of Singapore Navy a modern and integrated maritime fighting force – the naval platforms it possesses and the arsenal that they pack.",
-            "The Singapore Philatelic Museum is a museum about the postal history of Singapore and its stamps. The museum, located at 23-B Coleman Street in Singapore, was formerly part of the Anglo-Chinese School, completed in 1906"
+//            "A unique Singapore attraction, the Red Dot Design Museum presents the latest trends in the international design scene with a collection of more than 1,000 exhibits in the field of product design and communication design from over 50 countries.",
+//            "The National Gallery Singapore is an art gallery located in the Downtown Core of Singapore. Opened on 24 November 2015, it oversees the world’s largest public collection of Singapore and Southeast Asian art, consisting of over 8,000 artworks.",
+//            "Official mint for Singapore. The Mint has, since its establishment, undertaken most of the minting of Singapore's circulation coins.",
+            "Take a trip down memory lane, as you view the guns and other components taken from our early warships. Find out more about what makes the Republic of Singapore Navy a modern and integrated maritime fighting force – the naval platforms it possesses and the arsenal that they pack."
+//            "The Singapore Philatelic Museum is a museum about the postal history of Singapore and its stamps. The museum, located at 23-B Coleman Street in Singapore, was formerly part of the Anglo-Chinese School, completed in 1906"
     };
 
     private String[] entertainmentInfo = {

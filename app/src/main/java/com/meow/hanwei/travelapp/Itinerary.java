@@ -79,10 +79,11 @@ public class Itinerary extends AppCompatActivity {
             orderOfLocation.add(placesToVisit.get(i));
         }
 
-        for (int i = 0; i < placesToVisit.size()+1 ;i++ ){
-            distanceMap.add(new ArrayList<Integer>());
-            getJSONString(orderOfLocation.get(i),orderOfLocation); //response contains the distance from origin to places
-        }
+        getJSONString(originHotel, orderOfLocation);
+//        for (int i = 0; i < placesToVisit.size()+1 ;i++ ){
+//            distanceMap.add(new ArrayList<Integer>());
+//            getJSONString(orderOfLocation.get(i),orderOfLocation); //response contains the distance from origin to places
+//        }
     }
 
     //private String KEY = "AIzaSyDKl5Kpec3loPgTSW9hpU6R5in2ojl3RB8";
