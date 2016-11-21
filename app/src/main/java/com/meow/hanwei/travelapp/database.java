@@ -26,11 +26,11 @@ public class database {
 //            "Cathedral of the Good Shepherd Singapore",
 //            "Chinese Methodist Church Singapore",
 //            "Church of St Gregory the Illuminator Singapore",
-            "Hajjah Fatimah Mosque Beach Road",
+//            "Hajjah Fatimah Mosque Beach Road",
             "Haw Par Villa",
-            "Sri Krishnan Temple Waterloo Street",
+//            "Sri Krishnan Temple Waterloo Street",
             "Sri Srinivasa Perumal Temple",
-            "Sri Thendayuthapani Temple Tank Road",
+//            "Sri Thendayuthapani Temple Tank Road",
             "Masjid Sultan"
 //            "Thian Hock Keng Temple"
     };
@@ -92,11 +92,11 @@ public class database {
 //            "Gazetted as a national monument on 1973, you’ll stand in awe at its majestic facade, with extended pinnacles and a glossy white exterior.",
 //            "Telok Ayer Chinese Methodist Church is a church located in the Asian nation-city of Singapore belonging to the Chinese Annual Conference of the Methodist Church in Singapore.",
 //            "The Armenian Church of Saint Gregory the Illuminator, often known as Armenian Church, is the oldest Christian church in Singapore, located at Hill Street in the Museum Planning Area, within the Central Area.",
-            "Masjid Hajjah Fatimah is a mosque located along Beach Road in the Kampong Glam district within the Kallang Planning Area in Singapore. The mosque was completed in 1846.",
+//            "Masjid Hajjah Fatimah is a mosque located along Beach Road in the Kampong Glam district within the Kallang Planning Area in Singapore. The mosque was completed in 1846.",
             "Haw Par Villa is a theme park located along Pasir Panjang Road, Singapore. The park contains over 1,000 statues and 150 giant dioramas depicting scenes from Chinese mythology, folklore, legends, history, and illustrations of various aspects of Confucianism.",
-            "Sri Krishnan Temple is a temple adjacent to the Kwan Im Thong Hood Cho Temple. It is located on Waterloo Street, Singapore.",
+//            "Sri Krishnan Temple is a temple adjacent to the Kwan Im Thong Hood Cho Temple. It is located on Waterloo Street, Singapore.",
             "Sri Srinivasa Perumal Temple or Sri Perumal Temple is one of the oldest temples in Singapore. It is located in Little India on Serangoon Road, where its tall Gopuram shows the different incarnations of Lord Vishnu.",
-            "The Sri Thendayuthapani Temple, better known as the Chettiars' Temple or the Tank Road temple, is one of the Singapore Hindu community's most important monuments. It was gazetted as a national monument on 21 October 2014.",
+//            "The Sri Thendayuthapani Temple, better known as the Chettiars' Temple or the Tank Road temple, is one of the Singapore Hindu community's most important monuments. It was gazetted as a national monument on 21 October 2014.",
             "Masjid Sultan, or Sultan Mosque, is a mosque located at Muscat Street and North Bridge Road within the Kampong Glam precinct of the district of Rochor in Singapore. The mosque is considered one of the most important mosques in Singapore"
 //            "Thian Hock Keng Temple is the oldest and most important Hokkien or Hoklo temple in Singapore. The main temple is dedicated to Ma Cho Po (Mazu), the Taoist goddess of the sea and protector of all seamen, while a second temple at the back is a Buddhist one dedicated to Kuan Yin, the bodhisattva of mercy."
     };

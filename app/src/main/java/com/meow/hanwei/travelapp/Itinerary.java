@@ -65,7 +65,7 @@ public class Itinerary extends AppCompatActivity {
             }
         });
 
-       generateDistanceMap("Sentosa Singapore", data.getMuseums());
+       generateDistanceMap("Sentosa Singapore", data.getReligious());
         //getJSONString("Fullerton Hotel", data.getParks());
     }
 
@@ -78,12 +78,11 @@ public class Itinerary extends AppCompatActivity {
         for (int i = 0; i < placesToVisit.size(); i++){
             orderOfLocation.add(placesToVisit.get(i));
         }
-
-        getJSONString(originHotel, orderOfLocation);
-//        for (int i = 0; i < placesToVisit.size()+1 ;i++ ){
-//            distanceMap.add(new ArrayList<Integer>());
-//            getJSONString(orderOfLocation.get(i),orderOfLocation); //response contains the distance from origin to places
-//        }
+        
+        for (int i = 0; i < placesToVisit.size()+1 ;i++ ){
+            distanceMap.add(new ArrayList<Integer>());
+            getJSONString(orderOfLocation.get(i),orderOfLocation); //response contains the distance from origin to places
+        }
     }
 
     //private String KEY = "AIzaSyDKl5Kpec3loPgTSW9hpU6R5in2ojl3RB8";
