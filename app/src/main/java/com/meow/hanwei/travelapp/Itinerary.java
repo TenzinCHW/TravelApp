@@ -65,12 +65,16 @@ public class Itinerary extends AppCompatActivity {
             }
         });
 
+<<<<<<< HEAD
         // TODO: make https request ASYNCHRONOUSLY
         // TODO: convert to JSON
         // TODO: read the distance data
 
        generateDistanceMap("Sentosa Singapore", data.getParks());
         //getJSONString("Fullerton Hotel", data.getParks());
+=======
+       generateDistanceMap("Sentosa Singapore", data.getReligious());
+>>>>>>> 147fb1d8bff6c4b07babb1dd7ebae5a41843a05f
     }
 
 
@@ -101,7 +105,7 @@ public class Itinerary extends AppCompatActivity {
             if (count < toPlaces.size() - 1) {
                 request += "|";
             }
-            count ++;
+            count++;
         }
         request += "&mode=walking&key=" + KEY;
 

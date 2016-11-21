@@ -23,16 +23,16 @@ public class database {
     private String[] religious = {
             "Al - Abrar Mosque",
             "Buddha Tooth Relic Temple",
-            "Cathedral of the Good Shepherd",
-            "Chinese Methodist Church",
-            "Church of St Gregory the Illuminator",
-            "Hajjah Fatimah Mosque",
+//            "Cathedral of the Good Shepherd Singapore",
+//            "Chinese Methodist Church Singapore",
+//            "Church of St Gregory the Illuminator Singapore",
+            "Hajjah Fatimah Mosque Beach Road",
             "Haw Par Villa",
-            "Sri Krishnan Temple",
+            "Sri Krishnan Temple Waterloo Street",
             "Sri Srinivasa Perumal Temple",
-            "Sri Thandayuthapani Temple",
-            "Sultan Mosque",
-            "Thian Hock Keng Temple"
+            "Sri Thendayuthapani Temple Tank Road",
+            "Masjid Sultan"
+//            "Thian Hock Keng Temple"
     };
 
     private String[] museums = {
@@ -50,11 +50,11 @@ public class database {
     };
 
     private String[] entertainment = {
-            "Esplanade - Theatres on the Bay",
-            "Geylang Serai Market",
-            "G - Max Reverse Bungy",
-            "Marina Bay Sands Casino",
-            "Resort World Sentosa Casino",
+            "Esplanade Theatres on the Bay",
+            "Geylang Serai Market Singapore",
+            "G Max Reverse Bungy Singpore",
+            "Marina Bay Sands Casino Singapore",
+            "Resort World Sentosa Casino Singapore",
             "Sentosa Skyline Luge and Skyride",
             "Singapore Bazaar and Flea Market",
             "Singapore Discovery Centre",
@@ -89,16 +89,16 @@ public class database {
     private String[] religiousInfo = {
             "A small mosque of unique design at Tanjong Pagar frequently used by Muslim professionals working in the area.",
             "The Buddha Tooth Relic Temple and Museum (BTRTM) was founded in 2002 by Venerable Shi Fazhao. It was registered by the Registrar of Societies in 20th February 2003, and as a charity under the Charities Act in 8th January 2004. The Temple is dedicated to the Maitreya Buddha, which means 'The Compassionate One', and also called 'The Future Buddha'.",
-            "Gazetted as a national monument on 1973, you’ll stand in awe at its majestic facade, with extended pinnacles and a glossy white exterior.",
-            "Telok Ayer Chinese Methodist Church is a church located in the Asian nation-city of Singapore belonging to the Chinese Annual Conference of the Methodist Church in Singapore.",
-            "The Armenian Church of Saint Gregory the Illuminator, often known as Armenian Church, is the oldest Christian church in Singapore, located at Hill Street in the Museum Planning Area, within the Central Area.",
+//            "Gazetted as a national monument on 1973, you’ll stand in awe at its majestic facade, with extended pinnacles and a glossy white exterior.",
+//            "Telok Ayer Chinese Methodist Church is a church located in the Asian nation-city of Singapore belonging to the Chinese Annual Conference of the Methodist Church in Singapore.",
+//            "The Armenian Church of Saint Gregory the Illuminator, often known as Armenian Church, is the oldest Christian church in Singapore, located at Hill Street in the Museum Planning Area, within the Central Area.",
             "Masjid Hajjah Fatimah is a mosque located along Beach Road in the Kampong Glam district within the Kallang Planning Area in Singapore. The mosque was completed in 1846.",
             "Haw Par Villa is a theme park located along Pasir Panjang Road, Singapore. The park contains over 1,000 statues and 150 giant dioramas depicting scenes from Chinese mythology, folklore, legends, history, and illustrations of various aspects of Confucianism.",
             "Sri Krishnan Temple is a temple adjacent to the Kwan Im Thong Hood Cho Temple. It is located on Waterloo Street, Singapore.",
             "Sri Srinivasa Perumal Temple or Sri Perumal Temple is one of the oldest temples in Singapore. It is located in Little India on Serangoon Road, where its tall Gopuram shows the different incarnations of Lord Vishnu.",
             "The Sri Thendayuthapani Temple, better known as the Chettiars' Temple or the Tank Road temple, is one of the Singapore Hindu community's most important monuments. It was gazetted as a national monument on 21 October 2014.",
-            "Masjid Sultan, or Sultan Mosque, is a mosque located at Muscat Street and North Bridge Road within the Kampong Glam precinct of the district of Rochor in Singapore. The mosque is considered one of the most important mosques in Singapore",
-            "Thian Hock Keng Temple is the oldest and most important Hokkien or Hoklo temple in Singapore. The main temple is dedicated to Ma Cho Po (Mazu), the Taoist goddess of the sea and protector of all seamen, while a second temple at the back is a Buddhist one dedicated to Kuan Yin, the bodhisattva of mercy."
+            "Masjid Sultan, or Sultan Mosque, is a mosque located at Muscat Street and North Bridge Road within the Kampong Glam precinct of the district of Rochor in Singapore. The mosque is considered one of the most important mosques in Singapore"
+//            "Thian Hock Keng Temple is the oldest and most important Hokkien or Hoklo temple in Singapore. The main temple is dedicated to Ma Cho Po (Mazu), the Taoist goddess of the sea and protector of all seamen, while a second temple at the back is a Buddhist one dedicated to Kuan Yin, the bodhisattva of mercy."
     };
 
     private String[] museumInfo = {
