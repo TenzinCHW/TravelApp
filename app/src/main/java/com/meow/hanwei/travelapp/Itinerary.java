@@ -26,8 +26,16 @@ public class Itinerary extends AppCompatActivity {
     static database data = new database();
     final static ArrayList<String> places = new ArrayList<String>();
     static ArrayAdapter<String> itemsAdapter;
+    static List<List<Integer>> distanceMap = new ArrayList<List<Integer>>();
 
-    public void updateAdapter(String result){
+    public void updateAdapter(){
+        String result = "";
+        places.clear();
+        for ( List<Integer> distanceRow : distanceMap){
+            for (int i = 0; i < distanceRow.size(); i++){
+                result += "location "+ i +", "+distanceRow.get(i);
+            }
+        }
         places.add(result);
         itemsAdapter.notifyDataSetChanged();
     }
@@ -61,12 +69,10 @@ public class Itinerary extends AppCompatActivity {
         // TODO: convert to JSON
         // TODO: read the distance data
 
-       generateDistanceMap("Sentosa Singapore", data.getEntertainment());
+       generateDistanceMap("Sentosa Singapore", data.getParks());
         //getJSONString("Fullerton Hotel", data.getParks());
     }
 
-
-    static List<List<Integer>> distanceMap = new ArrayList<List<Integer>>();
 
 
     public void generateDistanceMap(String originHotel, ArrayList<String> placesToVisit){
@@ -83,7 +89,8 @@ public class Itinerary extends AppCompatActivity {
         }
     }
 
-    private String KEY = "AIzaSyDKl5Kpec3loPgTSW9hpU6R5in2ojl3RB8";
+    //private String KEY = "AIzaSyDKl5Kpec3loPgTSW9hpU6R5in2ojl3RB8";
+    private String KEY = "AIzaSyAbhohlm26WVT_H8HJMkFMghB5QGm4Mzc0"; //bernard's key
 
     public void getJSONString(String fromPlace, ArrayList<String> toPlaces) {
         String request = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + fromPlace.replace(" ", "+") + "&destinations=";
@@ -115,15 +122,13 @@ public class Itinerary extends AppCompatActivity {
                 try {
                     JSONObject originalData = new JSONObject(time2parse);
                     JSONArray rowsData = (JSONArray) originalData.get("rows");
-                    JSONArray elementData;
-                    JSONObject distData;
+                    JSONObject elementData;
+                    JSONArray distData;
                     Integer dist;
 
                     for (int i = 0; i < rowsData.length(); i++) {
-                        elementData = (JSONArray) rowsData.get(i);
-                        distData = (JSONObject) elementData.get(1);
-                        dist = distData.getInt("value");
-                        result.add(dist);
+                        elementData = rowsData.getJSONObject(i);
+                        result.add(elementData.getJSONArray("elements").getJSONObject(0).getJSONObject("distance").getInt("value"));
                     }
                 } catch (JSONException j) {
                     j.printStackTrace();
@@ -137,8 +142,8 @@ public class Itinerary extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            //distanceMap.add(getDistFromJSON(result));
-            updateAdapter(result);
+            distanceMap.add(getDistFromJSON(result));
+            updateAdapter();
             //itemsAdapter.this.notifyDataSetChanged();
         }
 
