@@ -57,12 +57,7 @@ public class Itinerary extends AppCompatActivity {
             }
         });
 
-        // TODO: make https request ASYNCHRONOUSLY
-        // TODO: convert to JSON
-        // TODO: read the distance data
-
-       generateDistanceMap("Sentosa Singapore", data.getEntertainment());
-        //getJSONString("Fullerton Hotel", data.getParks());
+       generateDistanceMap("Sentosa Singapore", data.getReligious());
     }
 
 
@@ -84,6 +79,7 @@ public class Itinerary extends AppCompatActivity {
     }
 
     private String KEY = "AIzaSyDKl5Kpec3loPgTSW9hpU6R5in2ojl3RB8";
+    private String KEY2 = "AIzaSyBFKZVzYRrAPyuXiwHYd7Bugz5bIdBoGXg";
 
     public void getJSONString(String fromPlace, ArrayList<String> toPlaces) {
         String request = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + fromPlace.replace(" ", "+") + "&destinations=";
@@ -96,7 +92,7 @@ public class Itinerary extends AppCompatActivity {
             }
             count ++;
         }
-        request += "&mode=walking&key=" + KEY;
+        request += "&mode=walking&key=" + KEY2;
 
         new getDistanceMapping().execute(request);
     }
