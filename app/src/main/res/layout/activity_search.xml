@@ -27,45 +27,82 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <com.meow.hanwei.travelapp.MultiSpinner
-    android:id="@+id/parks"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentTop="true"
-    android:layout_alignParentRight="true"
-    android:layout_alignParentEnd="true"
-    android:layout_marginTop="61dp" />
+    <ToggleButton
+        android:text="ToggleButton"
+        android:textOff="Parks"
+        android:textOn="Parks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/parksToggle"
+        android:layout_alignBaseline="@+id/religiousToggle"
+        android:layout_alignBottom="@+id/religiousToggle"
+        android:layout_toLeftOf="@+id/searchView"
+        android:layout_toStartOf="@+id/searchView" />
 
-    <com.meow.hanwei.travelapp.MultiSpinner
-    android:id="@+id/religious"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/parks"
-    android:layout_alignParentRight="true"
-    android:layout_alignParentEnd="true" />
+    <ListView
+        android:text="SearchList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchList"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/religiousToggle"
+        android:layout_below="@+id/searchView" />
 
-    <com.meow.hanwei.travelapp.MultiSpinner
-    android:id="@+id/museums"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/religious"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true" />
+    <ToggleButton
+        android:text="ToggleButton"
+        android:textOff="Entertainment"
+        android:textOn="Entertainment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/entertainmentToggle"
+        android:layout_above="@+id/toItinerary"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="19dp" />
 
-    <com.meow.hanwei.travelapp.MultiSpinner
-    android:id="@+id/entertainment"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/museums"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true" />
+    <ToggleButton
+        android:text="ToggleButton"
+        android:textOff="Religious"
+        android:textOn="Religious"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/religiousToggle"
+        android:layout_above="@+id/entertainmentToggle"
+        android:layout_toRightOf="@+id/searchView"
+        android:layout_toEndOf="@+id/searchView" />
 
-    <com.meow.hanwei.travelapp.MultiSpinner
-    android:id="@+id/food"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/entertainment"
-    android:layout_alignParentRight="true"
-    android:layout_alignParentEnd="true" />
+    <ToggleButton
+        android:text="ToggleButton"
+        android:textOff="Museum"
+        android:textOn="Museum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/museumToggle"
+        android:layout_below="@+id/parksToggle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:textOff="Food"
+        android:textOn="Food"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/foodToggle"
+        android:layout_alignBaseline="@+id/entertainmentToggle"
+        android:layout_alignBottom="@+id/entertainmentToggle"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="Clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/entertainmentToggle"
+        android:layout_alignRight="@+id/parksToggle"
+        android:layout_alignEnd="@+id/parksToggle"
+        android:layout_marginRight="29dp"
+        android:layout_marginEnd="29dp"
+        android:id="@+id/clear" />
 
 </RelativeLayout>

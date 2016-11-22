@@ -1,26 +1,24 @@
 package com.meow.hanwei.travelapp;
 
+import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.ListView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Search extends AppCompatActivity {
-
-    MultiSpinner parks;
-    MultiSpinner religious;
-    MultiSpinner museum;
-    MultiSpinner entertainment;
-    MultiSpinner food;
-    ArrayList<String> selectedParks = new ArrayList<>();
-    ArrayList<String> selectedReligious = new ArrayList<>();
-    ArrayList<String> selectedMuseums = new ArrayList<>();
-    ArrayList<String> selectedEntertainment = new ArrayList<>();
-    ArrayList<String> selectedFood = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,87 +27,114 @@ public class Search extends AppCompatActivity {
 
         final database data = new database();
 
-        // Multi spinner
-//        parks = (MultiSpinner) findViewById(R.id.parks);
-//        MultiSpinner.MultiSpinnerListener parkListener = new MultiSpinner.MultiSpinnerListener() {
-//            @Override
-//            public void onItemsSelected(boolean[] selected) {
-//                selectedParks.clear();
-//                System.out.println(Arrays.toString(selected));
-//                System.out.println("park");
-//                for (int i = 0; i < selected.length; i++) {
-//                    if (selected[i]) {
-//                        selectedParks.add(data.getParks().get(i));
-//                    }
-//                }
-//                System.out.println(selectedParks.toString());
-//            }
-//        };
-//        parks.setItems(data.getParks(), "Parks", parkListener);
-//
-//        religious = (MultiSpinner) findViewById(R.id.religious);
-//        final MultiSpinner.MultiSpinnerListener religiousListener = new MultiSpinner.MultiSpinnerListener() {
-//            @Override
-//            public void onItemsSelected(boolean[] selected) {
-//                System.out.println(Arrays.toString(selected));
-//                System.out.println("reli");
-//                selectedReligious.clear();
-//                for (int i = 0; i < selected.length; i++) {
-//                    if (selected[i]) {
-//                        selectedReligious.add(data.getReligious().get(i));
-//                    }
-//                }
-//                System.out.println(selectedReligious.toString());
-//            }
-//        };
-//        religious.setItems(data.getReligious(), "Religious", religiousListener);
-//
-//        museum = (MultiSpinner) findViewById(R.id.museums);
-//        MultiSpinner.MultiSpinnerListener museumListener = new MultiSpinner.MultiSpinnerListener() {
-//            @Override
-//            public void onItemsSelected(boolean[] selected) {
-//                System.out.println(selected.length);
-//                selectedMuseums.clear();
-//                for (int i = 0; i < selected.length; i++) {
-//                    if (selected[i]) {
-//                        selectedMuseums.add(data.getMuseums().get(i));
-//                    }
-//                }
-//            }
-//        };
-//        museum.setItems(data.getMuseums(), "Museums", museumListener);
-//
-//        entertainment = (MultiSpinner) findViewById(R.id.entertainment);
-//        MultiSpinner.MultiSpinnerListener entertainmentListener = new MultiSpinner.MultiSpinnerListener() {
-//            @Override
-//            public void onItemsSelected(boolean[] selected) {
-//                System.out.println(selected.length);
-//                for (int i = 0; i < selected.length; i++) {
-//                    if (selected[i]) {
-//                        selectedLocations.add(data.getEntertainment().get(i));
-//                    } else{
-//                        selectedLocations.remove(data.getEntertainment().get(i));
-//                    }
-//                }
-//            }
-//        };
-//        entertainment.setItems(data.getEntertainment(), "Entertainment", entertainmentListener);
-//
-//        food = (MultiSpinner) findViewById(R.id.food);
-//        MultiSpinner.MultiSpinnerListener foodListener = new MultiSpinner.MultiSpinnerListener() {
-//            @Override
-//            public void onItemsSelected(boolean[] selected) {
-//                System.out.println(selected.length);
-//                for (int i = 0; i < selected.length; i++) {
-//                    if (selected[i]) {
-//                        selectedLocations.add(data.getFood().get(i));
-//                    }else {
-//                        selectedLocations.remove(data.getFood().get(i));
-//                    }
-//                }
-//            }
-//        };
-//        food.setItems(data.getFood(), "Food", foodListener);
+        ToggleButton parksToggle = (ToggleButton) findViewById(R.id.parksToggle);
+        ToggleButton religiousToggle = (ToggleButton) findViewById(R.id.religiousToggle);
+        ToggleButton museumToggle = (ToggleButton) findViewById(R.id.museumToggle);
+        ToggleButton foodToggle = (ToggleButton) findViewById(R.id.foodToggle);
+        ToggleButton entertainmentToggle = (ToggleButton) findViewById(R.id.entertainmentToggle);
+        ListView searchList = (ListView) findViewById(R.id.searchList);
+
+        parksToggle.setChecked(true);
+        religiousToggle.setChecked(true);
+        museumToggle.setChecked(true);
+        foodToggle.setChecked(true);
+        entertainmentToggle.setChecked(true);
+
+        ArrayList<String> list = new ArrayList<String>();
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list);
+        searchList.setAdapter(adapter);
+        adapter.addAll(data.getParks());
+        adapter.addAll(data.getReligious());
+        adapter.addAll(data.getMuseums());
+        adapter.addAll(data.getFood());
+        adapter.addAll(data.getEntertainment());
+        adapter.setNotifyOnChange(true);
+        searchList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = adapter.getItem(i);
+                Intent intent = new Intent(getBaseContext(),PlaceInfo.class)
+                        .putExtra(Intent.EXTRA_TEXT,item);
+                startActivity(intent);
+            }
+        });
+
+        parksToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+                ArrayList<String> parksList = data.getParks();
+                if(isChecked){
+                    adapter.addAll(parksList);
+                } else {
+                    for(String name:parksList){
+                        adapter.remove(name);
+                    }
+                }
+//                state.setText(String.valueOf(num));
+            }
+        });
+        religiousToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+                ArrayList<String> religiousList = data.getReligious();
+                if(isChecked){
+                    adapter.addAll(religiousList);
+                } else {
+                    for(String name:religiousList){
+                        adapter.remove(name);
+                    }
+                }
+            }
+        });
+        museumToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+                ArrayList<String> museumList = data.getMuseums();
+                if(isChecked){
+                    adapter.addAll(museumList);
+                } else {
+                    for(String name:museumList){
+                        adapter.remove(name);
+                    }
+                }
+            }
+        });
+        foodToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+                ArrayList<String> foodList = data.getFood();
+                if(isChecked){
+                    adapter.addAll(foodList);
+                } else {
+                    for(String name:foodList){
+                        adapter.remove(name);
+                    }
+                }
+            }
+        });
+        entertainmentToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
+                ArrayList<String> entertainmentList = data.getEntertainment();
+                if(isChecked){
+                    adapter.addAll(entertainmentList);
+                } else {
+                    for(String name:entertainmentList){
+                        adapter.remove(name);
+                    }
+                }
+            }
+        });
+
+        SharedPreferences sharedPref = getSharedPreferences("Data",Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPref.edit();
+        Set<String> empty = new HashSet<String>();
+        final Set<String> itinerary = sharedPref.getStringSet("Itinerary",empty);
+
+        Button clear = (Button) findViewById(R.id.clear);
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editor.remove("Itinerary");
+                editor.commit();
+                Toast.makeText(getBaseContext(),"Cleared",Toast.LENGTH_SHORT).show();
+            }
+        });
 
         Button toItinerary = (Button) findViewById(R.id.toItinerary);
         toItinerary.setOnClickListener(new View.OnClickListener() {
