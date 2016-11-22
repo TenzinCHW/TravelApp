@@ -20,13 +20,6 @@
     <!--android:layout_alignRight="@+id/religious"-->
     <!--android:layout_alignEnd="@+id/religious"-->
 
-    <SearchView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/searchView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
     <ToggleButton
         android:text="ToggleButton"
         android:textOff="Parks"
@@ -38,16 +31,6 @@
         android:layout_alignBottom="@+id/religiousToggle"
         android:layout_toLeftOf="@+id/searchView"
         android:layout_toStartOf="@+id/searchView" />
-
-    <ListView
-        android:text="SearchList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/searchList"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/religiousToggle"
-        android:layout_below="@+id/searchView" />
 
     <ToggleButton
         android:text="ToggleButton"
@@ -104,5 +87,21 @@
         android:layout_marginRight="29dp"
         android:layout_marginEnd="29dp"
         android:id="@+id/clear" />
+
+    <ListView
+        android:text="SearchList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchList"
+        android:layout_below="@+id/searchView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <SearchView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

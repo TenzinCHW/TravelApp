@@ -233,4 +233,20 @@ public class database {
         }
         return temp;
     }
+
+    public ArrayList<String> getAllPlaces() {
+        temp.clear();
+
+        for (String ent : entertainment) {
+            temp.add(ent);}
+        for (String ent : food) {
+            temp.add(ent);}
+        for (String ent : parks) {
+            temp.add(ent);}
+        for (String ent : religious) {
+            temp.add(ent);}
+        for (String ent : museums) {
+            temp.add(ent);}
+        return temp;
+    }
 }
