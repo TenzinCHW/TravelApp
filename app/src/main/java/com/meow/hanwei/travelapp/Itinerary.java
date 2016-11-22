@@ -15,10 +15,18 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -37,34 +45,70 @@ public class Itinerary extends AppCompatActivity {
     static ArrayList<String> orderOfLocation = new ArrayList<String>();     //stores the order of which lookup occurs for the url
     static List<List<Integer>> distanceMap = new ArrayList<List<Integer>>();    //stores the downloaded distances for all the nodes, in a table format indicated by orderOfLocation
     static ArrayList<Integer> orderOfVisit;                                 //stores the generated shortest path for travelling salesman
-    static ArrayList<Integer> distanceArray = new ArrayList<Integer>();     //stores the distance for the finalised path for every vertex, wrt orderOfVisit
-    //static HashMap<Integer,Integer> distanceReduce = new HashMap<Integer, Integer>();   //stores the distance for the finalised path for every vertex, wrt orderOfVisit
+    static HashMap<Integer,Integer> associatedDistances = new HashMap<Integer, Integer>();   //stores the distance for the finalised path for every vertex, wrt orderOfVisit
 
     public void updateAdapter(){
         places.clear();
+
         if (distanceMap.size()==distanceMap.get(0).size()) {        //generate shortest path once all the input is in
             orderOfVisit = TSPNearestNeighbour.getShortestPath(distanceMap);
+
+//            for (int index : orderOfVisit){                     //update adapter with places
+//                places.add(orderOfLocation.get(index));         //with index from orderOfVisit, get the string location from orderOfLocation
+//            }
+//            places.add(orderOfLocation.get(0)); //home is the last place
+
+
+            //generate distance for the shortest path route, by looking it up from distanceMap's chart
+            int distanceFromCurrentNodeToNext;
+            for (int i = 0; i < orderOfVisit.size()-1; i++){
+                distanceFromCurrentNodeToNext = distanceMap.get(orderOfVisit.get(i)).get(orderOfVisit.get(i+1));
+                System.out.println(distanceFromCurrentNodeToNext);
+                associatedDistances.put(i,distanceFromCurrentNodeToNext);
+            }
+            distanceFromCurrentNodeToNext = distanceMap.get(orderOfVisit.get(orderOfVisit.size()-1)).get(0); //include the distance from last node back to home
+            System.out.println(distanceFromCurrentNodeToNext);
+            associatedDistances.put(orderOfVisit.size()-1, distanceFromCurrentNodeToNext); //include the distance from last node back to home
+
+
+
+            //TransportBudgetSettler(BUDGET,MAP OF TRAVEL)
+            TransportBudgetSettler transportSettler = new TransportBudgetSettler(7,associatedDistances);
+            ArrayList<String> transportMeans = transportSettler.optimiseTransportMode();
+
+
+            //Below is for updating adapterview
             for (int index : orderOfVisit){
-                places.add(orderOfLocation.get(index));
+                String goToLocation = orderOfLocation.get(index);
+                places.add(goToLocation + "\nDistance to below: "+ associatedDistances.get(index)+"\n Advised to take "+ transportMeans.get(index+1));//with index from orderOfVisit, get the string location from orderOfLocation
             }
             places.add(orderOfLocation.get(0)); //home is the last place
+            places.add(transportMeans.get(0));
 
-            for (int i = 0; i < orderOfVisit.size()-1; i++){        //generate distance for the shortest path route, by looking it up from distanceMap's chart
-                distanceArray.add(distanceMap.get(orderOfVisit.get(i)).get(orderOfVisit.get(i+1)));
-            }
-            distanceArray.add(distanceMap.get(orderOfVisit.get(orderOfVisit.size()-1)).get(0)); //include the distance from last node back to home
 
-            //Temporary display of calculated distance
-            String distance = "";
-            for (int i = 0; i < distanceArray.size()-1 ; i++){
-                distance+= "To "+ orderOfLocation.get(orderOfVisit.get(i)) +": " + Integer.toString(distanceArray.get(i)) +"\n";
+
+/*
+            //iterate through the map for display
+            Iterator it = associatedDistances.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry pair = (Map.Entry)it.next();
+                places.add(pair.getKey() + " = " + pair.getValue());
+                it.remove(); // avoids a ConcurrentModificationException
             }
-            distance+= "To "+ orderOfLocation.get(0) +": " + Integer.toString(distanceArray.get(distanceArray.size()-1 )) +"\n";
-            places.add(distance);
+*/
+//            //below tests the transport budget settler
+//            System.out.println("Total distance in metres is "+transportSettler.getTotalDistance());
+//            tempDistance = distanceMap.get(orderOfVisit.get(0)).get(orderOfVisit.get(1));
+//            System.out.println("If we cab for first path, we pay "+transportSettler.calculateTaxiCost(tempDistance));
+//            System.out.println("If we take public transport for first path, we pay "+transportSettler.calculatePublicTransportCost(tempDistance));
+
+
         }
         else places.add("Loading places");
         itemsAdapter.notifyDataSetChanged();
     }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,13 +134,12 @@ public class Itinerary extends AppCompatActivity {
             }
         });
 
-<<<<<<< HEAD
+
         //Temporary sample used, format of <STARTING HOTEL>, ARRAYLIST OF ITENARY
        generateDistanceMap("Sentosa Singapore", data.getParks());
-=======
-       generateDistanceMap("Sentosa Singapore", data.getReligious());
+
+       //generateDistanceMap("Sentosa Singapore", data.getReligious());
         //getJSONString("Fullerton Hotel", data.getParks());
->>>>>>> ae8bab983cfffba61a09e3070187f7a2db7895d0
     }
 
 
@@ -113,10 +156,11 @@ public class Itinerary extends AppCompatActivity {
         }
     }
 
-    //private String KEY = "AIzaSyDKl5Kpec3loPgTSW9hpU6R5in2ojl3RB8";   //tenzin's key
+    private String KEY = "AIzaSyDKl5Kpec3loPgTSW9hpU6R5in2ojl3RB8";   //tenzin's key
     //private String KEY = "AIzaSyAbhohlm26WVT_H8HJMkFMghB5QGm4Mzc0"; //bernard's key
     //private String KEY = "AIzaSyBw4_44qvcaVt8Mdk6UCuAteotYSS2lQ10"; //Jiahong's key
-    private String KEY = "AIzaSyAreMaarsk5IVDsEo0nteGjVxMPGxWdfvY"; //Alan's key
+    //private String KEY = "AIzaSyAreMaarsk5IVDsEo0nteGjVxMPGxWdfvY"; //Alan's key
+    //private String KEY =  "AIzaSyDlYCA8hMSeTUbjjDqv1110j3S6tV_QUfc";    //Eiros' key
 
     public void getJSONString(String fromPlace, ArrayList<String> toPlaces) {
         String request = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + fromPlace.replace(" ", "+") + "&destinations=";
@@ -129,7 +173,8 @@ public class Itinerary extends AppCompatActivity {
             }
             count++;
         }
-        request += "&mode=walking&key=" + KEY;
+        //mode=walking || mode=transit
+        request += "&mode=transit&key=" + KEY;
 
         new obtainDistanceAsync().execute(request);
     }
@@ -143,7 +188,7 @@ public class Itinerary extends AppCompatActivity {
         private ArrayList<Integer> getDistFromJSON(String time2parse) throws ArrayStoreException {
             System.out.println(time2parse);         //output string from the api call. For debugging purposes
             ArrayList<Integer> result = new ArrayList<>();
-            System.out.println(time2parse);
+            //System.out.println(time2parse);
             if (time2parse.equals("FAILED")) {
                 throw new ArrayStoreException("NOTHING FOUND GG");
             } else {
@@ -170,7 +215,6 @@ public class Itinerary extends AppCompatActivity {
             super.onPostExecute(result);
             distanceMap.add(getDistFromJSON(result));
             updateAdapter();
-
         }
 
         @Override
@@ -238,7 +282,7 @@ class TSPNearestNeighbour {
         int element, dst = 0, i;
         int min = Integer.MAX_VALUE;
         boolean minFlag = false;
-        System.out.print(0 + "\t");
+//        System.out.print(0 + "\t");
         visitOrder.add(0);
 
         while (!stack.isEmpty()) {
@@ -259,7 +303,7 @@ class TSPNearestNeighbour {
             if (minFlag) {
                 visited[dst] = 1;
                 stack.push(dst);
-                System.out.print(dst + "\t");
+//                System.out.print(dst + "\t");
                 visitOrder.add(dst);
                 minFlag = false;
                 continue;
@@ -292,7 +336,7 @@ class TSPNearestNeighbour {
                 }
             }
 
-            System.out.println("Visit in the order of:");
+//            System.out.println("Visit in the order of:");
             TSPNearestNeighbour tspNearestNeighbour = new TSPNearestNeighbour();
             return tspNearestNeighbour.tsp(adjacency_matrix);
         } catch (InputMismatchException inputMismatch) {

@@ -17,26 +17,52 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+import java.util.Stack;
+
+
 public class Itinerary extends AppCompatActivity {
-    static database data = new database();
-    final static ArrayList<String> places = new ArrayList<String>();
-    static ArrayAdapter<String> itemsAdapter;
-    static List<List<Integer>> distanceMap = new ArrayList<List<Integer>>();
+    static database data = new database();                              //database where we get all our location names for singapore
+    final static ArrayList<String> places = new ArrayList<String>();        //ArrayList attached to adapter, to display the results of the shortest path wrt budget to the user
+    static ArrayAdapter<String> itemsAdapter;                               //adapter for above-mentioned ArrayList
+
+
+    static ArrayList<String> orderOfLocation = new ArrayList<String>();     //stores the order of which lookup occurs for the url
+    static List<List<Integer>> distanceMap = new ArrayList<List<Integer>>();    //stores the downloaded distances for all the nodes, in a table format indicated by orderOfLocation
+    static ArrayList<Integer> orderOfVisit;                                 //stores the generated shortest path for travelling salesman
+    static ArrayList<Integer> distanceArray = new ArrayList<Integer>();     //stores the distance for the finalised path for every vertex, wrt orderOfVisit
+    //static HashMap<Integer,Integer> distanceReduce = new HashMap<Integer, Integer>();   //stores the distance for the finalised path for every vertex, wrt orderOfVisit
 
     public void updateAdapter(){
-        String result = "";
         places.clear();
-        for ( List<Integer> distanceRow : distanceMap){
-            for (int i = 0; i < distanceRow.size(); i++){
-                result += "location "+ i +", "+distanceRow.get(i);
+        if (distanceMap.size()==distanceMap.get(0).size()) {        //generate shortest path once all the input is in
+            orderOfVisit = TSPNearestNeighbour.getShortestPath(distanceMap);
+            for (int index : orderOfVisit){
+                places.add(orderOfLocation.get(index));
             }
+            places.add(orderOfLocation.get(0)); //home is the last place
+
+            for (int i = 0; i < orderOfVisit.size()-1; i++){        //generate distance for the shortest path route, by looking it up from distanceMap's chart
+                distanceArray.add(distanceMap.get(orderOfVisit.get(i)).get(orderOfVisit.get(i+1)));
+            }
+            distanceArray.add(distanceMap.get(orderOfVisit.get(orderOfVisit.size()-1)).get(0)); //include the distance from last node back to home
+
+            //Temporary display of calculated distance
+            String distance = "";
+            for (int i = 0; i < distanceArray.size()-1 ; i++){
+                distance+= "To "+ orderOfLocation.get(orderOfVisit.get(i)) +": " + Integer.toString(distanceArray.get(i)) +"\n";
+            }
+            distance+= "To "+ orderOfLocation.get(0) +": " + Integer.toString(distanceArray.get(distanceArray.size()-1 )) +"\n";
+            places.add(distance);
         }
-        places.add(result);
+        else places.add("Loading places");
         itemsAdapter.notifyDataSetChanged();
     }
 
@@ -47,14 +73,13 @@ public class Itinerary extends AppCompatActivity {
 
         setContentView(R.layout.activity_itinerary);
 
-        Bundle extras = getIntent().getExtras();  // use this to get the locations the user input
+        Bundle extras = getIntent().getExtras();  // use this to get the locations the user input,
         // TODO: set rawUserLocations to the Arraylist in bundle
 
+        //initialise Adapter, and link it to the adapter listening out there for asynctasks
         itemsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, places);
-
         ListView listView = (ListView) findViewById(R.id.itinerary);
         listView.setAdapter(itemsAdapter);
-
         itemsAdapter.notifyDataSetChanged();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -66,35 +91,32 @@ public class Itinerary extends AppCompatActivity {
         });
 
 <<<<<<< HEAD
-        // TODO: make https request ASYNCHRONOUSLY
-        // TODO: convert to JSON
-        // TODO: read the distance data
-
+        //Temporary sample used, format of <STARTING HOTEL>, ARRAYLIST OF ITENARY
        generateDistanceMap("Sentosa Singapore", data.getParks());
-        //getJSONString("Fullerton Hotel", data.getParks());
 =======
        generateDistanceMap("Sentosa Singapore", data.getReligious());
->>>>>>> 147fb1d8bff6c4b07babb1dd7ebae5a41843a05f
+        //getJSONString("Fullerton Hotel", data.getParks());
+>>>>>>> ae8bab983cfffba61a09e3070187f7a2db7895d0
     }
-
 
 
     public void generateDistanceMap(String originHotel, ArrayList<String> placesToVisit){
         //order of distanceMap table is originHotel, placesToVisit0, placesToVisit1, ...
-        ArrayList<String> orderOfLocation = new ArrayList<String>();
+
         orderOfLocation.add(0,originHotel);
         for (int i = 0; i < placesToVisit.size(); i++){
             orderOfLocation.add(placesToVisit.get(i));
         }
-
+        
         for (int i = 0; i < placesToVisit.size()+1 ;i++ ){
-            distanceMap.add(new ArrayList<Integer>());
             getJSONString(orderOfLocation.get(i),orderOfLocation); //response contains the distance from origin to places
         }
     }
 
-    //private String KEY = "AIzaSyDKl5Kpec3loPgTSW9hpU6R5in2ojl3RB8";
-    private String KEY = "AIzaSyAbhohlm26WVT_H8HJMkFMghB5QGm4Mzc0"; //bernard's key
+    //private String KEY = "AIzaSyDKl5Kpec3loPgTSW9hpU6R5in2ojl3RB8";   //tenzin's key
+    //private String KEY = "AIzaSyAbhohlm26WVT_H8HJMkFMghB5QGm4Mzc0"; //bernard's key
+    //private String KEY = "AIzaSyBw4_44qvcaVt8Mdk6UCuAteotYSS2lQ10"; //Jiahong's key
+    private String KEY = "AIzaSyAreMaarsk5IVDsEo0nteGjVxMPGxWdfvY"; //Alan's key
 
     public void getJSONString(String fromPlace, ArrayList<String> toPlaces) {
         String request = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + fromPlace.replace(" ", "+") + "&destinations=";
@@ -109,30 +131,30 @@ public class Itinerary extends AppCompatActivity {
         }
         request += "&mode=walking&key=" + KEY;
 
-        new getDistanceMapping().execute(request);
+        new obtainDistanceAsync().execute(request);
     }
 
-    public class getDistanceMapping extends AsyncTask<String, Void, String> {
+    public class obtainDistanceAsync extends AsyncTask<String, Void, String> {
         public static final String REQUEST_METHOD = "GET";
         public static final int READ_TIMEOUT = 15000;
         public static final int CONNECTION_TIMEOUT = 15000;
 
 
         private ArrayList<Integer> getDistFromJSON(String time2parse) throws ArrayStoreException {
+            System.out.println(time2parse);         //output string from the api call. For debugging purposes
             ArrayList<Integer> result = new ArrayList<>();
+            System.out.println(time2parse);
             if (time2parse.equals("FAILED")) {
                 throw new ArrayStoreException("NOTHING FOUND GG");
             } else {
                 try {
                     JSONObject originalData = new JSONObject(time2parse);
-                    JSONArray rowsData = (JSONArray) originalData.get("rows");
-                    JSONObject elementData;
-                    JSONArray distData;
-                    Integer dist;
+                    JSONArray rowsData = originalData.getJSONArray("rows");
+                    JSONArray elementData = rowsData.getJSONObject(0).getJSONArray("elements");
 
-                    for (int i = 0; i < rowsData.length(); i++) {
-                        elementData = rowsData.getJSONObject(i);
-                        result.add(elementData.getJSONArray("elements").getJSONObject(0).getJSONObject("distance").getInt("value"));
+                    for (int i = 0; i < elementData.length(); i++) {
+                        int temp =elementData.getJSONObject(i).getJSONObject("distance").getInt("value");
+                        result.add(temp);
                     }
                 } catch (JSONException j) {
                     j.printStackTrace();
@@ -148,17 +170,14 @@ public class Itinerary extends AppCompatActivity {
             super.onPostExecute(result);
             distanceMap.add(getDistFromJSON(result));
             updateAdapter();
-            //itemsAdapter.this.notifyDataSetChanged();
+
         }
 
         @Override
         protected String doInBackground(String... strings) {
             String stringUrl = strings[0];
-            //System.out.println(stringUrl);
             String inputLine;
             String result;
-
-            //for (something : noOfPlaces){ do try/except below}
 
             try{
                 //Create a URL object holding our url
@@ -199,3 +218,88 @@ public class Itinerary extends AppCompatActivity {
     }
 
 }
+
+
+
+//Get shortest distance iteratively
+class TSPNearestNeighbour {
+    private int numberOfNodes;
+    private Stack<Integer> stack;
+    public TSPNearestNeighbour() {
+        stack = new Stack<Integer>();
+    }
+
+    public ArrayList<Integer> tsp(int adjacencyMatrix[][]) {
+        ArrayList<Integer> visitOrder= new ArrayList<Integer>();
+        numberOfNodes = adjacencyMatrix[1].length;
+        int[] visited = new int[numberOfNodes];
+        visited[0] = 1;
+        stack.push(0);
+        int element, dst = 0, i;
+        int min = Integer.MAX_VALUE;
+        boolean minFlag = false;
+        System.out.print(0 + "\t");
+        visitOrder.add(0);
+
+        while (!stack.isEmpty()) {
+            element = stack.peek();
+            i = 1;
+            min = Integer.MAX_VALUE;
+            while (i < numberOfNodes) {
+                if (adjacencyMatrix[element][i] > 1 && visited[i] == 0) {
+                    if (min > adjacencyMatrix[element][i]) {
+                        min = adjacencyMatrix[element][i];
+                        dst = i;
+                        minFlag = true;
+                    }
+                }
+                i++;
+            }
+
+            if (minFlag) {
+                visited[dst] = 1;
+                stack.push(dst);
+                System.out.print(dst + "\t");
+                visitOrder.add(dst);
+                minFlag = false;
+                continue;
+            }
+
+            stack.pop();
+        }
+        return visitOrder;
+    }
+
+    public static ArrayList<Integer> getShortestPath(List<List<Integer>> distanceMap) {
+        int number_of_nodes;
+        try {
+            number_of_nodes = distanceMap.get(0).size();        //no of places to visit, including home
+
+            //Generate the adjacency matrix (Consider replacing with the original distanceMap instead)
+            int adjacency_matrix[][] = new int[number_of_nodes][number_of_nodes];
+            for (int i = 0; i < number_of_nodes; i++) {
+                for (int j = 0; j < number_of_nodes; j++) {
+                    adjacency_matrix[i][j]=distanceMap.get(i).get(j);
+                }
+            }
+
+            for (int i = 0; i < number_of_nodes; i++) {
+                for (int j = 0; j < number_of_nodes; j++)
+                {
+                    if (adjacency_matrix[i][j] == 1 && adjacency_matrix[j][i] == 0) {
+                        adjacency_matrix[j][i] = 1;
+                    }
+                }
+            }
+
+            System.out.println("Visit in the order of:");
+            TSPNearestNeighbour tspNearestNeighbour = new TSPNearestNeighbour();
+            return tspNearestNeighbour.tsp(adjacency_matrix);
+        } catch (InputMismatchException inputMismatch) {
+            System.out.println("Wrong Input format");
+        }
+        return null;
+    }
+}
+
+
